@@ -90,3 +90,71 @@ Submission is only the following three things:
 - [ ] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
 - [ ] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
 - [ ] The Chat/LLM used page link, with the complete chat history
+
+
+## Implementation Notes
+
+### Task 1 — Solvable Starting States
+
+The original implementation generated the puzzle by randomly shuffling all tiles. 
+This could produce unreachable board configurations due to the parity constraints 
+of sliding puzzles.
+
+The puzzle was changed to:
+
+1. Create the solved board.
+2. Locate the blank space.
+3. Select a legal blank-space move.
+4. Apply the move.
+5. Repeat the process to scramble the board.
+
+This guarantees that every generated starting state is reachable from the solved state.
+
+### Task 2 — Puzzle Lifecycle
+
+The puzzle now detects when the board reaches the solved arrangement.
+
+Once the puzzle is solved:
+
+- The final move count and elapsed time are displayed.
+- The game ends cleanly.
+- Further commands cannot modify the completed puzzle.
+
+### Task 3 — Board Sizes, Timer, and Moves
+
+The puzzle supports:
+
+- 3 × 3
+- 4 × 4
+- 5 × 5
+
+Move count and elapsed time are tracked by the game session and are not reset 
+when the puzzle board is recreated unnecessarily.
+
+### Task 4 — Valid-Action Feedback
+
+A move is counted only when a tile actually moves into the blank space.
+
+Invalid moves:
+
+- Do not modify the board.
+- Do not increment the move counter.
+- Do not produce successful-move feedback.
+
+## Testing
+
+The implementation was tested for:
+
+- 3 × 3, 4 × 4, and 5 × 5 boards.
+- Multiple freshly generated puzzles.
+- Reachability/solvability of generated boards.
+- Solved-state detection.
+- Valid blank-space moves.
+- Impossible moves at board boundaries.
+- Invalid commands.
+- Correct move counting.
+- Timer behaviour.
+- Completion behaviour.
+- Quit command.
+- Prevention of moves after puzzle completion.
+

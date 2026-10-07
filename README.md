@@ -158,3 +158,10 @@ The implementation was tested for:
 - Quit command.
 - Prevention of moves after puzzle completion.
 
+## BEFORE AND AFTER VIDEOS
+ 
+ - BEFORE THE CHANGES
+   https://github.com/user-attachments/assets/687fd113-9bd5-4e13-be2d-def4f1154a66
+
+ - AFTER THE CHANGES
+   https://github.com/user-attachments/assets/e60a9986-49c5-4d75-8261-2a10328aa271
